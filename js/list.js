@@ -7,7 +7,7 @@ $(document).ready(function () {
             var contentHTML = '';
             streets.forEach(element => {
                 var status_text = '';
-                if (element.status == 1){
+                if (element.status == 1) {
                     status_text = "Being used";
                 } else if (element.status == -1) {
                     status_text = "Under construction";
@@ -25,7 +25,7 @@ $(document).ready(function () {
             var list = document.getElementById("content");
             list.innerHTML += contentHTML;
         },
-        error: function (){
+        error: function () {
             alert('Must handle error.');
         }
     });
@@ -42,13 +42,13 @@ $(document).ready(function () {
             var list = document.getElementById("district_filter");
             list.innerHTML += contentHTML;
         },
-        error: function (){
+        error: function () {
             alert('Must handle error.');
         }
     });
     const search_keyword = $('input[name = search_keyword]');
     const district_filter = $('select[name = district_filter]');
-    $('form[name=search-form]').submit(function (event){
+    $('form[name=search-form]').submit(function (event) {
         event.preventDefault();
         let data = {
             search_keyword: search_keyword.val(),
@@ -58,10 +58,13 @@ $(document).ready(function () {
             url: "http://localhost:8080/dw_assignment/api/list.php",
             method: 'POST',
             data: data,
-            success: function (data){
+            success: function (data) {
+                var list = document.getElementById("content");
                 var streets = JSON.parse(data);
                 var searchTitle = document.getElementById('search-title');
-                searchTitle.innerText = `Search result for ${search_keyword.val()}`
+                if (search_keyword.val() != null && search_keyword.val().length > 0) {
+                    searchTitle.innerText = `Search result for ${search_keyword.val()}`
+                }
                 var contentHTML = `
                                         <tr class="">
                                             <th>Street Name</th>
@@ -72,7 +75,7 @@ $(document).ready(function () {
                                         </tr>`;
                 streets.forEach(element => {
                     var status_text = '';
-                    if (element.status == 1){
+                    if (element.status == 1) {
                         status_text = "Being used";
                     } else if (element.status == -1) {
                         status_text = "Under construction";
@@ -87,10 +90,10 @@ $(document).ready(function () {
                                         <td>${status_text}</td>
                                     </tr>`;
                 })
-                var list = document.getElementById("content");
                 list.innerHTML = contentHTML;
+
             },
-            error: function (){
+            error: function () {
 
             }
         });
