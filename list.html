@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>List street</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+</head>
+<body>
+<div class="w3-container w3-green">
+    <h2>List Street</h2>
+</div>
+<div class="w3-container w3-margin-top">
+    <form action="api/list.php" method="get" name="search-form">
+        <div class="w3-row-padding">
+            <div class="w3-half">
+                <label><b>Search</b></label>
+                <input class="w3-input w3-border w3-round" name="search_keyword" type="text">
+            </div>
+            <div class="w3-half">
+                <label><b>District</b></label>
+                <select id ="district_filter" class="w3-select w3-border w3-round" name="district_filter">
+                    <option value="" disabled selected>Choose district</option>
+
+                </select>
+            </div>
+        </div>
+        <input type="submit" class="w3-margin-top w3-margin-left">
+    </form>
+</div>
+<div class="w3-container w3-margin-top">
+    <h4 id="search-title"></h4>
+    <table class="w3-table w3-border" id = "content">
+        <tr class="">
+            <th>Street Name</th>
+            <th>District</th>
+            <th>Public Date</th>
+            <th class="w3-center">Description</th>
+            <th>Status</th>
+        </tr>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="js/list.js"></script>
+</body>
+</html>
